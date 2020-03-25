@@ -1,0 +1,9 @@
+<h1>lista notatek</h1>
+<% if @notes.present? %>
+  <% @notes.each do  |n| %>
+    <div style="width: 100px; height: 100px; border-color: #B00100">
+      <div>Treść notatki numer <%= n.id %></div>
+      <div><%= n.description %></div>
+    </div>
+    <% end %>
+<% end %>

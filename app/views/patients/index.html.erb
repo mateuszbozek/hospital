@@ -1,0 +1,29 @@
+<h1>Strona z listą paciejntów</h1>
+
+<% if @patients.present? %>
+  <% @patients.each do |p| %>
+    <div style="border-color: #B00100; border-style: double">
+      <div> Pacjent : <%= p.name + " " + p.surename %></div>
+
+      <% if p.notes.present? %>
+        <% p.notes.each do |n| %>
+          <div>
+            Treść notatki : <%= n.description %> z dnia <%= n.created_at %>
+          </div>
+
+        <% end %>
+      <% end %>
+
+      <% if p.surveys.present? %>
+        <% p.surveys.each do |s| %>
+          <div> Badanie z dnia : <%= s.created_at %></div>
+          <div><%= s.systolic_blood_pressure %></div>
+          <div><%= s.diastolic_blood_pressure %></div>
+          <div><%= s.pulse %></div>
+          <div><%= s.sugar_level %></div>
+        <% end %>
+      <% end %>
+    </div>
+
+  <% end %>
+<% end %>
