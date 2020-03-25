@@ -5,9 +5,6 @@ class PatientsController < ApplicationController
     @patients = Patient.all
   end
 
-  def show
-  end
-
   def create
     puts "Jesteś w PatientController#create"
     patient = Patient.new do |p|

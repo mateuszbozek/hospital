@@ -1,0 +1,40 @@
+<h1>Dodaj badanie</h1>
+<div>
+  <%= form_for @survey do |f| %>
+
+    <div>
+      <div><%= f.label "Pacient" %></div>
+      <div><%= f.select :patient_id,  options_for_select(@patients.collect{ |p| [p.name + " " + p.surename, p.id] }) %></div>
+    </div>
+
+    <div>
+      <div><%= f.label "Ciśnienie skurczowe" %></div>
+      <div><%= f.text_field :systolic_blood_pressure %></div>
+    </div>
+
+    <div>
+      <div><%= f.label "Cisnienie rozkurczowe" %></div>
+      <div><%= f.text_field :diastolic_blood_pressure %></div>
+    </div>
+
+    <div>
+      <div><%= f.label "Puls" %></div>
+      <div><%= f.text_field :pulse %></div>
+    </div>
+
+    <div>
+      <div><%= f.label "Poziom cukru" %></div>
+      <div><%= f.text_field :sugar_level %></div>
+    </div>
+
+    <div>
+      <div><%= f.label "Temperatura" %></div>
+      <div><%= f.text_field :temperature %></div>
+    </div>
+
+    <div>
+      <div></div><%= f.submit "Zapisz" %>
+    </div>
+
+  <% end %>
+</div>

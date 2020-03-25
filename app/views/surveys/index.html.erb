@@ -1,0 +1,20 @@
+<h1>Lista badań</h1>
+<%= link_to "Dodaj badanie", new_survey_path %>
+<div>
+  <% if @surveys.present? %>
+    <% @surveys.each do |s| %>
+      <div style='border-style: double; border-color: blue'>
+        <div style="border-style: dashed;border-color: aquamarine">
+          <%= link_to "Edytuj badanie", edit_survey_path(s.id) %>
+          <%= link_to "Usuń badanie", survey_path(s.id) ,:method => :delete, data: {:confirm => "Czy jesteś pewien?" } %>
+        </div>
+        <div>Pacient <%= s.patient.name + s.patient.surename  %></div>
+        <div>Ciśnienie skurczowe : <%= s.systolic_blood_pressure %></div>
+        <div>Ciśnienie rozkurczowe : <%= s.diastolic_blood_pressure %></div>
+        <div>Puls : <%= s.pulse %></div>
+        <div>Pomiar cukru : <%= s.sugar_level %></div>
+        <div>Temperatura : <%= s.temperature %></div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
