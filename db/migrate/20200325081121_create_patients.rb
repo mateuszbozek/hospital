@@ -4,6 +4,7 @@ class CreatePatients < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :surename
       t.bigint :personal_identify_number
+      t.boolean :depreciated
       t.timestamps
     end
   end

@@ -2,7 +2,7 @@ class PatientsController < ApplicationController
 
   def index
     puts "Jesteś w PatientController#index"
-    @patients = Patient.all
+    @patients = Patient.where(:depreciated => nil)
   end
 
   def create
@@ -11,6 +11,7 @@ class PatientsController < ApplicationController
       p.name = params[:patient][:name]
       p.surename = params[:patient][:surename]
       p.personal_identify_number = params[:patient][:personal_identify_number]
+      p.depreciated = nil
     end
     patient.save!
     redirect_to patients_path
@@ -40,7 +41,8 @@ class PatientsController < ApplicationController
   def destroy
     puts "Jesteś w PatientController#destroy"
     puts params
-    Patient.find(params[:id]).destroy
+    patient = Patient.find(params[:id])
+    patient.update_attribute(:depreciated, true)
     redirect_to patients_path
   end
 

@@ -1,9 +1,17 @@
 <h1>Lista notatek</h1>
+<%= link_to "Dodaj notatkę", new_note_path %>
 <% if @notes.present? %>
   <% @notes.each do  |n| %>
-    <div style="width: 100px; height: 100px; border-color: #B00100">
-      <div>Treść notatki numer <%= n.id %></div>
+    <div style="border-style: double;border-color: #B00100">
+      <div>
+      <%= link_to "Edytuj notatkę", edit_note_path(n.id) %>
+      <%= link_to "Usuń badanie", note_path(n.id) ,:method => :delete, data: {:confirm => "Czy jesteś pewien?" } %>
+      </div>
+      <div>Treść notatki </div>
       <div><%= n.description %></div>
+      <% if n.patient.present? %>
+      <div>Notatka dotyczy pacjenta : <%= n.patient.name + " " + n.patient.surename %></div>
+      <% end %>
     </div>
     <% end %>
 <% end %>

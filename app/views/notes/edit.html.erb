@@ -1,0 +1,20 @@
+<h1>Edytuj notatkę</h1>
+<div>
+  <%= form_for @note do |f| %>
+
+    <div>
+      <div><%= f.label "Pacient" %></div>
+      <div><%= f.select :patient_id,  options_for_select(@patients.collect{ |p| [p.name + " " + p.surename, p.id] }) %></div>
+    </div>
+
+    <div>
+      <div><%= f.label "Treść notatki" %></div>
+      <div><%= f.text_area :description , value: @note.description%></div>
+    </div>
+
+    <div>
+      <div></div><%= f.submit "Zapisz" %>
+    </div>
+
+  <% end %>
+</div>

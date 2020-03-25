@@ -6,6 +6,7 @@ class CreateSurveys < ActiveRecord::Migration[6.0]
       t.integer :pulse
       t.integer :sugar_level
       t.float :temperature
+      t.boolean :depreciated
       t.timestamps
     end
   end

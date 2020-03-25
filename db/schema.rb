@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2020_03_25_110219) do
 
   create_table "notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "description"
+    t.boolean "depreciated"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "patient_id"
@@ -30,6 +31,7 @@ ActiveRecord::Schema.define(version: 2020_03_25_110219) do
     t.string "name"
     t.string "surename"
     t.bigint "personal_identify_number"
+    t.boolean "depreciated"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -46,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_03_25_110219) do
     t.integer "pulse"
     t.integer "sugar_level"
     t.float "temperature"
+    t.boolean "depreciated"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "patient_id"

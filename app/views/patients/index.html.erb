@@ -5,7 +5,6 @@
 <% if @patients.present? %>
   <% @patients.each do |p| %>
     <div style="border-color: #B00100; border-style: double">
-
       <div>Pacjent : <%= p.name + " " + p.surename %></div>
       <div>Pesel : <%= p.personal_identify_number %></div>
       <div><%= link_to 'Edytuj', edit_patient_path(p.id) %></div>
