@@ -1,9 +1,15 @@
-<h1>Strona z listą paciejntów</h1>
-
+<h1>Lista pacjentów</h1>
+<div>
+  <%= link_to "Dodaj pacjenta", new_patient_path %>
+</div>
 <% if @patients.present? %>
   <% @patients.each do |p| %>
     <div style="border-color: #B00100; border-style: double">
-      <div> Pacjent : <%= p.name + " " + p.surename %></div>
+
+      <div>Pacjent : <%= p.name + " " + p.surename %></div>
+      <div>Pesel : <%= p.personal_identify_number %></div>
+      <div><%= link_to 'Edytuj', edit_patient_path(p.id) %></div>
+      <div><%= link_to 'Usuń', patient_path(p.id) ,:method => :delete, data: {:confirm => "Czy jesteś pewien?" } %></div>
 
       <% if p.notes.present? %>
         <% p.notes.each do |n| %>
@@ -16,11 +22,12 @@
 
       <% if p.surveys.present? %>
         <% p.surveys.each do |s| %>
-          <div> Badanie z dnia : <%= s.created_at %></div>
-          <div><%= s.systolic_blood_pressure %></div>
-          <div><%= s.diastolic_blood_pressure %></div>
-          <div><%= s.pulse %></div>
-          <div><%= s.sugar_level %></div>
+          <div>Badanie z dnia : <%= s.created_at %>
+            <div>Ciśnieni skurczowe : <%= s.systolic_blood_pressure %></div>
+            <div>Ciśnienie rozkurczowe : <%= s.diastolic_blood_pressure %></div>
+            <div>Puls : <%= s.pulse %></div>
+            <div>Poziom cukru : <%= s.sugar_level %></div>
+          </div>
         <% end %>
       <% end %>
     </div>

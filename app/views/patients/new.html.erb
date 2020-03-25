@@ -1,0 +1,26 @@
+<h1> Dodawanie nowego pacjenta</h1>
+
+<div>
+  <%= form_for @patient do |f| %>
+
+    <div>
+      <div><%= f.label "Imię" %></div>
+      <div><%= f.text_field :name %></div>
+    </div>
+
+    <div>
+      <div><%= f.label "Nazwisko" %></div>
+      <div><%= f.text_field :surename %></div>
+    </div>
+
+    <div>
+      <div><%= f.label "Pesel" %></div>
+      <div><%= f.text_field :personal_identify_number %></div>
+    </div>
+
+    <div>
+      <div></div><%= f.submit "Zapisz" %>
+    </div>
+
+  <% end %>
+</div>

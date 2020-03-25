@@ -1,7 +1,7 @@
 class PatientsController < ApplicationController
 
   def index
-    puts "Jesteś w "
+    puts "Jesteś w PatientController#index"
     @patients = Patient.all
   end
 
@@ -9,8 +9,42 @@ class PatientsController < ApplicationController
   end
 
   def create
+    puts "Jesteś w PatientController#create"
+    patient = Patient.new do |p|
+      p.name = params[:patient][:name]
+      p.surename = params[:patient][:surename]
+      p.personal_identify_number = params[:patient][:personal_identify_number]
+    end
+    patient.save!
+    redirect_to patients_path
   end
 
   def new
+    puts "Jesteś w PatientController#new"
+    @patient = Patient.new
   end
+
+  def edit
+    puts "Jesteś w PatientController#edit"
+    @patient = Patient.find(params[:id])
+  end
+
+  def update
+    puts "Jesteś w PatientController#update"
+    patient = Patient.find(params[:id])
+    patient.update_attributes(
+        :name => params[:patient][:name],
+        :surename => params[:patient][:surename],
+        :personal_identify_number => params[:patient][:personal_identify_number]
+    )
+    redirect_to patients_path
+  end
+
+  def destroy
+    puts "Jesteś w PatientController#destroy"
+    puts params
+    Patient.find(params[:id]).destroy
+    redirect_to patients_path
+  end
+
 end
