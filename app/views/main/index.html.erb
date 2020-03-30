@@ -1,0 +1,47 @@
+<h1>To jest strona index - strona główna</h1>
+
+<div>
+  <% if @patients.present? %>
+    <div style="border-style: double; border-color: #B00100">
+      Lista pacjentów (3 ostatnich)
+      <% @patients.each do |p| %>
+        <div>
+          <div>Imie : <%= p.name %></div>
+          <div>Nazwisko : <%= p.surename %></div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div>
+  <% if @surveys.present? %>
+    <div style="border-style: dashed; border-color: #730E15">
+      Lista badań (3 ostatnie)
+      <% @surveys.each do |s| %>
+        <div>
+          <div>Imie : <%= s.patient.name %></div>
+          <div>Nazwisko : <%= s.patient.surename %></div>
+          <div>Ciśnienie skurczowe : <%= s.systolic_blood_pressure %></div>
+          <div>Ciśnienie rozkurczowe : <%= s.diastolic_blood_pressure %></div>
+          <div>Puls : <%= s.pulse %></div>
+          <div>Poziom cukru : <%= s.sugar_level %></div>
+          <div>Temperatura : <%= s.temperature %></div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div>
+  <% if @notes.present? %>
+    <div style="border-style: groove; border-color: aqua">
+      Lista notatek (3 ostatnie)
+      <% @notes.each do |n| %>
+        <div>
+          <%= n.description %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

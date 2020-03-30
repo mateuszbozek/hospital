@@ -1,7 +1,20 @@
-<h4>TO JEST HEADER</h4>
-<div>
-  <div><%= link_to "Pacjenci", patients_path %></div>
-  <div><%= link_to "Badania", surveys_path %></div>
-<!--  <div><%#= link_to "Lekarze",  %></div>-->
-  <div><%= link_to "Notatki", notes_path %></div>
-</div>
+<% if user_signed_in? %>
+  <h4>TO JEST HEADER</h4>
+  <div>
+    <div><%= link_to "Pacjenci", patients_path %></div>
+    <div><%= link_to "Badania", surveys_path %></div>
+    <!--  <div><%#= link_to "Lekarze",  %></div>-->
+    <div><%= link_to "Notatki", notes_path %></div>
+
+    <%= link_to 'Wyloguj', destroy_user_session_path, method: :delete %>
+
+  </div>
+
+<% else %>
+
+  <%= link_to "Rejestracja", new_user_registration_path %>
+  <%= link_to "Logowanie", new_user_session_path %>
+
+<% end %>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
