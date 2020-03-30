@@ -1,3 +1,4 @@
 class Department < ApplicationRecord
-  # has_one :user
+  has_many :user
+  has_many :patient
 end

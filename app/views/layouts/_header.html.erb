@@ -1,10 +1,17 @@
 <% if user_signed_in? %>
   <h4>TO JEST HEADER</h4>
   <div>
-    <div><%= link_to "Pacjenci", patients_path %></div>
-    <div><%= link_to "Badania", surveys_path %></div>
-    <!--  <div><%#= link_to "Lekarze",  %></div>-->
-    <div><%= link_to "Notatki", notes_path %></div>
+    Oddział :   <%= current_user.department.name %>
+  </div>
+  <div>
+    Obecnie zalogowany użytkownik :   <%= current_user.name %>
+  </div>
+  <div>
+    <%= link_to "Strona główna", root_path %>
+    <%= link_to "Pacjenci", patients_path %>
+    <%= link_to "Badania", surveys_path %>
+    <!--  <%#= link_to "Lekarze",  %></div>-->
+    <%= link_to "Notatki", notes_path %>
 
     <%= link_to 'Wyloguj', destroy_user_session_path, method: :delete %>
 

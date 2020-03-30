@@ -3,7 +3,16 @@ class SurveysController < ApplicationController
 
   def index
     puts "Jesteś w SurveysController#index"
-    @surveys = Survey.where(:depreciated => nil)
+    @surveys = Survey.left_outer_joins(:patient)
+                   .where(patients: {:department_id => current_user.department_id})
+                   .where(:depreciated => nil)
+    # @surveys = Survey.includes(:patient).where(:depreciated => nil)
+
+    puts "A"
+    @surveys.each do |s|
+      puts s.inspect
+    end
+    puts "A"
   end
 
   def create
@@ -23,13 +32,13 @@ class SurveysController < ApplicationController
 
   def new
     puts "Jesteś w SurveysController#new"
-    @patients = Patient.where(:depreciated => nil)
+    @patients = Patient.where(department_id: current_user.department_id).where(:depreciated => nil)
     @survey = Survey.new
   end
 
   def edit
     puts "Jesteś w PatientController#edit"
-    @patients = Patient.where(:depreciated => nil)
+    @patients = Patient.where(department_id: current_user.department_id).where(:depreciated => nil)
     @survey = Survey.find(params[:id])
   end
 

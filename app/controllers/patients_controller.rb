@@ -4,7 +4,7 @@ class PatientsController < ApplicationController
 
   def index
     puts "Jesteś w PatientController#index"
-    @patients = Patient.where(:depreciated => nil)
+    @patients = Patient.where(department_id: current_user.department_id).where(:depreciated => nil)
   end
 
   def create
@@ -13,6 +13,7 @@ class PatientsController < ApplicationController
       p.name = params[:patient][:name]
       p.surename = params[:patient][:surename]
       p.personal_identify_number = params[:patient][:personal_identify_number]
+      p.department_id = current_user.department_id
       p.depreciated = nil
     end
     patient.save!

@@ -4,7 +4,9 @@ class NotesController < ApplicationController
 
   def index
     puts "Jesteś w NotesController#index"
-    @notes = Note.where(:depreciated => nil)
+    @notes = Note.left_outer_joins(:patient)
+                 .where(patients: {:department_id => current_user.department_id})
+                 .where(:depreciated => nil)
   end
 
   def create
@@ -20,13 +22,13 @@ class NotesController < ApplicationController
 
   def new
     puts "Jesteś w NotesController#new"
-    @patients = Patient.where(:depreciated => nil)
+    @patients = Patient.where(department_id: current_user.department_id).where(:depreciated => nil)
     @note = Note.new
   end
 
   def edit
     puts "Jesteś w NotesController#edit"
-    @patients = Patient.where(:depreciated => nil)
+    @patients = Patient.where(department_id: current_user.department_id).where(:depreciated => nil)
     @note = Note.find(params[:id])
   end
 
