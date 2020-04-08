@@ -9,6 +9,11 @@
   </div>
 
   <div class="field">
+    <%= f.label "Imię i nazwisko" %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
     <%= f.label "Hasło" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> znaków minimum)</em>
@@ -19,6 +24,16 @@
   <div class="field">
     <%= f.label "Ponownie wpisz hasło" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Rola" %><br />
+    <%= f.select :role_id,  options_for_select(@roles.collect{ |p| [p.name, p.id] }) %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Oddział" %><br />
+    <%= f.select :department_id,  options_for_select(@deparments.collect{ |p| [p.name, p.id] }) %>
   </div>
 
   <div class="actions">
