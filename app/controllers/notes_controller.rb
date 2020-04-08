@@ -30,6 +30,7 @@ class NotesController < ApplicationController
     puts "Jesteś w NotesController#edit"
     @patients = Patient.where(department_id: current_user.department_id).where(:depreciated => nil)
     @note = Note.find(params[:id])
+    puts @note.inspect
   end
 
   def update

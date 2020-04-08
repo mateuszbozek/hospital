@@ -6,13 +6,6 @@ class SurveysController < ApplicationController
     @surveys = Survey.left_outer_joins(:patient)
                    .where(patients: {:department_id => current_user.department_id})
                    .where(:depreciated => nil)
-    # @surveys = Survey.includes(:patient).where(:depreciated => nil)
-
-    puts "A"
-    @surveys.each do |s|
-      puts s.inspect
-    end
-    puts "A"
   end
 
   def create
