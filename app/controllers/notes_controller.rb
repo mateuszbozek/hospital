@@ -24,6 +24,7 @@ class NotesController < ApplicationController
     puts "Jesteś w NotesController#new"
     @patients = Patient.where(department_id: current_user.department_id).where(:depreciated => nil)
     @note = Note.new
+    puts "Mała zmiana"
   end
 
   def edit
