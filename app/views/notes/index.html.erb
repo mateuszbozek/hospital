@@ -1,11 +1,11 @@
 <h1>Lista notatek</h1>
-<%= link_to "Dodaj notatkę", new_note_path %>
+<% if can? :create, Note %><%= link_to "Dodaj notatkę", new_note_path %> <% end %>
 <% if @notes.present? %>
   <% @notes.each do  |n| %>
     <div style="border-style: double;border-color: #B00100">
       <div>
-      <%= link_to "Edytuj notatkę", edit_note_path(n.id) %>
-      <%= link_to "Usuń badanie", note_path(n.id) ,:method => :delete, data: {:confirm => "Czy jesteś pewien?" } %>
+      <% if can? :edit, n %><%= link_to "Edytuj notatkę", edit_note_path(n.id) %><% end %>
+      <% if can? :delete, n %><%= link_to "Usuń badanie", note_path(n.id) ,:method => :delete, data: {:confirm => "Czy jesteś pewien?" } %><% end %>
       </div>
       <div>Treść notatki </div>
       <div><%= n.description %></div>

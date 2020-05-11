@@ -13,6 +13,24 @@ class Ability
     #     can :read, :all
     #   end
     #
+      user ||= User.new # guest user (not logged in)
+      if user.role_id==2
+        can :manage, :all
+      elsif user.role_id==3
+        can :read, :all
+        can :edit, Patient
+        can :edit, Survey
+        can :edit, Note
+        can :create, Patient
+        can :create, Survey
+        can :create, Note
+      elsif user.role_id ==4
+        can :read, :all
+        can :create, Survey
+        can :create, Note
+      end
+
+    #
     # The first argument to `can` is the action you are giving the user
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions

@@ -1,14 +1,14 @@
 <h1>Lista pacjentów</h1>
 <div>
-  <%= link_to "Dodaj pacjenta", new_patient_path %>
+ <% if can? :create, Patient %> <%= link_to "Dodaj pacjenta", new_patient_path %> <% end %>
 </div>
 <% if @patients.present? %>
   <% @patients.each do |p| %>
     <div style="border-color: #B00100; border-style: double">
       <div>Pacjent : <%= p.name + " " + p.surename %></div>
       <div>Pesel : <%= p.personal_identify_number %></div>
-      <div><%= link_to 'Edytuj', edit_patient_path(p.id) %></div>
-      <div><%= link_to 'Usuń', patient_path(p.id) ,:method => :delete, data: {:confirm => "Czy jesteś pewien?" } %></div>
+      <div><% if can? :edit, p %>  <%= link_to 'Edytuj', edit_patient_path(p.id) %> <% end %></div>
+      <div><% if can? :delete, p %>  <%= link_to 'Usuń', patient_path(p.id) ,:method => :delete, data: {:confirm => "Czy jesteś pewien?" } %> <% end %></div>
 
       <% if p.notes.present? %>
         <% p.notes.each do |n| %>

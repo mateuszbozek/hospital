@@ -1,6 +1,6 @@
 class PatientsController < ApplicationController
   before_action :authenticate_user!
-
+  load_and_authorize_resource
 
   def index
     puts "Jesteś w PatientController#index"
