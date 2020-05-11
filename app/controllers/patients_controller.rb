@@ -5,6 +5,13 @@ class PatientsController < ApplicationController
   def index
     puts "Jesteś w PatientController#index"
     @patients = Patient.where(department_id: current_user.department_id).where(:depreciated => nil)
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @patients.to_csv }
+      format.xls { send_data @patients.to_csv(col_sep: "\t") }
+      # format.csv { render text:  @patients.to_csv }
+    end
   end
 
   def create
@@ -48,5 +55,6 @@ class PatientsController < ApplicationController
     patient.update_attribute(:depreciated, true)
     redirect_to patients_path
   end
+
 
 end

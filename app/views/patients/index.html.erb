@@ -1,6 +1,7 @@
 <h1>Lista pacjentów</h1>
 <div>
  <% if can? :create, Patient %> <%= link_to "Dodaj pacjenta", new_patient_path %> <% end %>
+ <% if can? :create, Patient %> <%= link_to "Generuj plik", patients_path(format:"xls") %> <% end %>
 </div>
 <% if @patients.present? %>
   <% @patients.each do |p| %>
