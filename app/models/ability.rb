@@ -18,10 +18,12 @@ class Ability
         can :manage, :all
       elsif user.role_id==3
         can :read, :all
-        can :edit, Patient
         can :edit, Survey
         can :edit, Note
-        can :create, Patient
+        can :update, Survey
+        can :update, Note
+        can :new, Survey
+        can :new, Note
         can :create, Survey
         can :create, Note
       elsif user.role_id ==4

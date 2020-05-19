@@ -11,12 +11,12 @@ class NotesController < ApplicationController
 
   def create
     puts "Jesteś w NotesController#create"
-    note = Note.new do |n|
-      n.patient_id = params[:note][:patient_id]
-      n.description = params[:note][:description]
-      n.depreciated = nil
-    end
-    note.save!
+    @note = Note.new(note_params)
+    #   n.patient_id = params[:note][:patient_id]
+    #   n.description = params[:note][:description]
+    #   n.depreciated = nil
+    # end
+    @note.save!
     redirect_to notes_path
   end
 
@@ -24,7 +24,6 @@ class NotesController < ApplicationController
     puts "Jesteś w NotesController#new"
     @patients = Patient.where(department_id: current_user.department_id).where(:depreciated => nil)
     @note = Note.new
-    puts "Mała zmiana"
   end
 
   def edit
@@ -48,6 +47,12 @@ class NotesController < ApplicationController
     note = Note.find(params[:id])
     note.update_attribute(:depreciated, true)
     redirect_to notes_path
+  end
+
+  private
+
+  def note_params
+    params.require(:note).permit(:patient_id, :description)
   end
 
 end
