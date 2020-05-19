@@ -28,12 +28,12 @@
 
   <div class="field">
     <%= f.label "Rola" %><br />
-    <%= f.select :role_id,  options_for_select(@roles.collect{ |p| [p.name, p.id] }) %>
+    <%= f.select :role_id,  options_for_select(Role.all.collect{ |p| [p.name, p.id] }) %>
   </div>
 
   <div class="field">
     <%= f.label "Oddział" %><br />
-    <%= f.select :department_id,  options_for_select(@deparments.collect{ |p| [p.name, p.id] }) %>
+    <%= f.select :department_id,  options_for_select(Department.all.collect{ |p| [p.name, p.id] }) %>
   </div>
 
   <div class="actions">
